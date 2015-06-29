@@ -17,8 +17,6 @@ EXT =
 
 BINARY_DIR = ../bin/
 
-OPTIONS = SP ..\bin\minv.blo ..\bin\minv_01.par
-#OPTIONS = SP ..\bin\5ord.blo ..\bin\5ord_31.par
 #--------------------------------------------------------------------------------------------------
 COMPILERFLAGS = -Wall 
 LINKERFLAGS = -Wv 
@@ -27,7 +25,7 @@ CFLAGS = $(COMPILERFLAGS) $(INCLUDEDIR)
 
 OBJECTS = main.o utils.o sn_tree.o sn.o  symb_matrix.o circuit.o param_file.o ams_parser.o
 
-LIBDIR = ~/programy/shared_libs
+LIBDIR = ../lib
 INCLUDES = -I $(LIBDIR)
 
 all: $(OBJECTS)		
@@ -35,8 +33,7 @@ all: $(OBJECTS)
 	@echo Linking
 	@echo ------------
 	$(CC) $(CFLAGS) $(OBJECTS)  $(LIBS) -o $(BINARY_DIR)$(TARGET)$(EXT)
-#	@cp $(BINARY_DIR)$(TARGET) ~/programy/gc_studio/debug/bin
-#	@cp $(BINARY_DIR)$(TARGET) ~/programy/gc_studio/deploy/bin
+
 run: all	
 	@$(BINARY_DIR)$(TARGET) $(OPTIONS)
 
