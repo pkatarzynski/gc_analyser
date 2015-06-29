@@ -1,0 +1,81 @@
+#
+# File: 	makefile 
+# Author: 	P. Katarzynski
+# Company: 	Chair of Computer Engineering
+#
+# Description:  Makefile automation utility for GC_Analyser
+#
+#------------------------------------------- SETTINGS --------------------------------------------
+
+# target name
+TARGET = gc_analyser
+
+#extension name 
+EXT =.exe
+
+#binary directory
+
+BINARY_DIR = ../bin/
+
+#OPTIONS = SP ..\bin\minv.blo ..\bin\minv_01.par
+OPTIONS = SP ..\bin\5ord.blo ..\bin\5ord_31.par
+#--------------------------------------------------------------------------------------------------
+COMPILERFLAGS = -Wall 
+LINKERFLAGS = -Wv 
+CC = g++
+CFLAGS = $(COMPILERFLAGS) $(INCLUDEDIR)
+
+OBJECTS = main.o utils.o sn_tree.o sn.o  symb_matrix.o circuit.o param_file.o ams_parser.o
+
+LIBDIR = ../lib
+INCLUDES = -I $(LIBDIR)
+
+all: $(OBJECTS)		
+	@echo ------------
+	@echo Linking
+	@echo ------------
+	$(CC) $(CFLAGS) $(OBJECTS)  $(LIBS) -o $(BINARY_DIR)$(TARGET)$(EXT)
+run: all	
+	@$(BINARY_DIR)$(TARGET) $(OPTIONS)
+
+#--------------------------------------------------------------------------------------------------
+# COMPILE SHARED LIBS
+#--------------------------------------------------------------------------------------------------
+utils.o : $(LIBDIR)/utils.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBDIR)/utils.cpp -c 
+
+sn_tree.o : $(LIBDIR)/sn_tree.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBDIR)/sn_tree.cpp -c
+	
+sn.o : $(LIBDIR)/sn.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBDIR)/sn.cpp -c 
+		
+param_file.o : $(LIBDIR)/param_file.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBDIR)/param_file.cpp -c
+#--------------------------------------------------------------------------------------------------
+# COMPILE THE REST
+#--------------------------------------------------------------------------------------------------	
+main.o : main.cpp
+	$(CC) $(CFLAGS) main.cpp -c $(INCLUDES) 
+		
+symb_matrix.o : symb_matrix.cpp
+	$(CC) $(CFLAGS) symb_matrix.cpp -c $(INCLUDES) 		
+	
+circuit.o : circuit.cpp
+	$(CC) $(CFLAGS) circuit.cpp -c $(INCLUDES) 			
+
+ams_parser.o : ams_parser.cpp
+	$(CC) $(CFLAGS) ams_parser.cpp -c $(INCLUDES) 				
+
+clean:
+	@ rm *.o
+	
+backup:
+	@ mkdir src_bak
+	@ cp *.cpp src_bak
+	@ cp *.h src_bak
+	@ cp *.hpp src_bak
+	@ cp *makefile* src_bak
+	@ tar -uf backup.tar src_bak	
+	@ mv  backup.tar ../backup
+	@ rm -R src_bak

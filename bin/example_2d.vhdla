@@ -1,0 +1,22 @@
+library VLSI;
+use VLSI.SI.all;
+entity example is port (
+	terminal input Vin : electrical;	
+	terminal output Vout : electrical;
+	terminal ground gnd: electrical);
+end entity example;
+-- some comment line
+architecture example_arch of example is
+variable v1,v2,v3 : real;
+begin
+
+C1 : GC_CAP generic map(dim=>1) port map (Ni=>v2, Nj=>gnd);
+C2 : GC_CAP generic map(dim=>2) port map (Ni=>v2, Nj=>gnd);
+-- conductances with I/O signals
+G5 : GC_CON port map (Ni=>Vin, Nj=>v1);
+G6 : GC_CON port map (Ni=>v3, Nj=>gnd, Vo=>Vout);
+-- gyrators
+ig3 : GC_GYR port map( Ni=>v1, Nj=>v2);
+ig4 : GC_GYR port map( Ni=>v2, Nj=>v3);
+
+end architecture;
