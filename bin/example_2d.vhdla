@@ -9,7 +9,7 @@ end entity example;
 architecture example_arch of example is
 variable v1,v2,v3 : real;
 begin
-
+-- capacitors with different dimensions
 C1 : GC_CAP generic map(dim=>1) port map (Ni=>v2, Nj=>gnd);
 C2 : GC_CAP generic map(dim=>2) port map (Ni=>v2, Nj=>gnd);
 -- conductances with I/O signals
