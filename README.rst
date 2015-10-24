@@ -15,6 +15,6 @@ Usage
 
 The gc_analyser is a command line tool. Currently it supports two types of work:
 
-* Symbolic analysis. The results are stored in Structural Number (SN) file. Use `gc_analyser SN file.vhdla` for that option
+* Symbolic analysis. The results are stored in Structural Number (SN) file. Use ``gc_analyser SN file.vhdla`` for that option
 
-* Matlab export. It results in producing Matlab script suitable for processing with symbolic analysis toolbox. Use `gc_analyser MAT file.vhdla`
+* Matlab export. It results in producing Matlab script suitable for processing with symbolic analysis toolbox. Use ``gc_analyser MAT file.vhdla``
