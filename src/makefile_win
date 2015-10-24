@@ -20,8 +20,8 @@ BINARY_DIR = ../bin/
 #OPTIONS = SP ..\bin\minv.blo ..\bin\minv_01.par
 OPTIONS = SP ..\bin\5ord.blo ..\bin\5ord_31.par
 #--------------------------------------------------------------------------------------------------
-COMPILERFLAGS = -Wall 
-LINKERFLAGS = -Wv 
+COMPILERFLAGS = -Wall -static
+LINKERFLAGS = -Wv -static
 CC = g++
 CFLAGS = $(COMPILERFLAGS) $(INCLUDEDIR)
 
