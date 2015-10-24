@@ -7,7 +7,7 @@ is presented `here
 Compilation
 -----------
 
-CNU Compiler Collection  (GCC) is needed for compilation There are two makefile scripts provided. Rename appropriate into makefile and issue the make command. This should result in production binary file 
+GNU Compiler Collection  (GCC) is needed for compilation There are two makefile scripts provided. Rename appropriate into makefile and issue the make command. This should result in production of binary file 
 in bin directory. Run the produced binary file and follow the presented instructions. 
 
 Usage
